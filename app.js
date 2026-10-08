@@ -5,10 +5,28 @@
   const letter = document.getElementById('letter');
   const root = document.documentElement;
 
-  /* ---------- Scale khung thiết kế 390×844 vừa màn hình ---------- */
+  /* ---------- Co giãn khung thiết kế (rộng 390) theo thiết bị ----------
+     - Điện thoại (rộng ≤ 480px): khoá theo CHIỀU RỘNG, hệ số = rộng màn hình / 390, luôn phủ kín chiều ngang.
+       Chiều cao khung tự co giãn theo màn hình (--stage-h); tranh bìa 390×844 nằm giữa khi khung cao hơn.
+     - Màn hình lớn (tablet, desktop): giữ khung 390×844 ở giữa, hai bên nền #1E1E1E. */
+  const PHONE_MAX = 480;
   function fit() {
-    const s = Math.min(window.innerWidth / STAGE_W, window.innerHeight / STAGE_H);
-    root.style.setProperty('--s', s.toFixed(4));
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const set = (k, v) => root.style.setProperty(k, v);
+    if (vw <= PHONE_MAX) {
+      const s = vw / STAGE_W;
+      const h = vh / s;
+      set('--s', s.toFixed(4));
+      set('--stage-h', h.toFixed(2) + 'px');
+      set('--oy', (h > STAGE_H ? (h - STAGE_H) / 2 : 0).toFixed(2) + 'px');
+      set('--stage-top', '0px'); set('--stage-ty', '0px'); set('--stage-origin', '50% 0');
+    } else {
+      const s = Math.min(vw / STAGE_W, vh / STAGE_H);
+      set('--s', s.toFixed(4));
+      set('--stage-h', STAGE_H + 'px');
+      set('--oy', '0px');
+      set('--stage-top', '50%'); set('--stage-ty', '-50%'); set('--stage-origin', 'center');
+    }
   }
   fit();
   window.addEventListener('resize', fit);

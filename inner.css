@@ -7,7 +7,7 @@
   position: absolute; inset: 0;
   overflow-x: hidden; overflow-y: auto;
   background: var(--page);
-  translate: 0 844px; /* nằm dưới đáy khung, chờ đẩy lên */
+  translate: 0 100%; /* nằm dưới đáy khung (cao bằng khung), chờ đẩy lên */
   pointer-events: none;
   will-change: translate;
   scrollbar-width: none;

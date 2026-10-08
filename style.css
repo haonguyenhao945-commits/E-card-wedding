@@ -6,7 +6,9 @@
   --ink: #430815;
   --cream: #fffbd9;
   --stage-w: 390px;
-  --stage-h: 844px;
+  --stage-h: 844px;  /* JS đặt lại theo thiết bị: trên điện thoại = chiều cao màn hình / hệ số co */
+  --art-h: 844px;    /* chiều cao tranh bìa gốc trong Figma */
+  --oy: 0px;         /* độ lệch dọc của tranh bìa khi khung cao hơn 844 */
   --s: 1;
   --ease-out: cubic-bezier(.22, .8, .24, 1);
 }
@@ -33,11 +35,13 @@ html, body {
    overflow hidden để các mảnh phong bì trượt ra không tràn sang vùng đen. */
 .stage {
   position: absolute;
-  left: 50%; top: 50%;
+  left: 50%; top: var(--stage-top, 50%);
   width: var(--stage-w); height: var(--stage-h);
-  transform: translate(-50%, -50%) scale(var(--s));
-  transform-origin: center;
+  transform: translate(-50%, var(--stage-ty, -50%)) scale(var(--s));
+  transform-origin: var(--stage-origin, center);
   overflow: hidden;
+  /* phần kéo dài khi khung cao hơn tranh bìa: nửa trên cùng màu mép trên, nửa dưới cùng màu mép dưới */
+  background: linear-gradient(#bab37a 50%, #a8a271 50%);
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
@@ -48,7 +52,7 @@ html, body {
 .layer--bg { left: 0; top: 0; width: 390px; height: 844px; }
 
 /* Cảnh: khi mở nắp, cả cảnh trượt xuống (như camera hạ theo nắp đang lật lên) để lộ mặt trong của nắp */
-.scene { position: absolute; inset: 0; pointer-events: none; transition: translate 1.5s cubic-bezier(.45, .05, .2, 1) .25s; }
+.scene { position: absolute; left: 0; top: var(--oy); width: 390px; height: var(--art-h); pointer-events: none; transition: translate 1.5s cubic-bezier(.45, .05, .2, 1) .25s; }
 /* Bỏ 2px hàng trên cùng của nền (có viền nâu) để chỗ nối giữa bản gốc và bản sao lật không lộ vệt */
 /* Thứ tự lớp: khi đóng, nắp nằm trên thân phong bì (như Figma). Khi trang 2 trồi lên, nắp hạ xuống dưới trang. */
 .scene--bg    { z-index: 1; }
@@ -59,7 +63,8 @@ html, body {
 .stage.is-inside .scene--flap { z-index: 3; }
 
 .layer--bg { clip-path: inset(2px 0 0 0); }
-.layer--bg-top { top: -840px; scale: 1 -1; }
+.layer--bg-top { top: -840px; scale: 1 -1; opacity: 0; transition: opacity .3s ease .25s; }
+.stage.is-open .layer--bg-top { opacity: 1; }
 .piece--left   { left: 0;     top: 0;    width: 234px; height: 844px; }  /* Rectangle 17 */
 .piece--right  { left: 156px; top: 0;    width: 234px; height: 844px; }  /* Rectangle 18 */
 .piece--bottom { left: 0;     bottom: 0; width: 390px; height: 486px; }  /* Rectangle 16 */
@@ -84,7 +89,7 @@ html, body {
 /* ---------- Tên (104:788) ---------- */
 .names {
   position: absolute;
-  left: 56px; top: 43.5px;
+  left: 56px; top: calc(43.5px + var(--oy));
   width: 278.661px; height: 260.874px;
   display: flex; align-items: center; justify-content: center;
   pointer-events: none;
@@ -109,7 +114,7 @@ html, body {
 /* ---------- Dấu sáp (104:771) ---------- */
 .seal {
   position: absolute;
-  left: 50%; top: 50%;
+  left: 50%; top: calc(422px + var(--oy));
   width: 268px; height: 268px;
   translate: -50% -50%;
   padding: 0; border: 0; background: none;
@@ -129,7 +134,7 @@ html, body {
 /* ---------- CTA (104:794) ---------- */
 .cta {
   position: absolute;
-  left: 50%; top: 596px;
+  left: 50%; top: min(calc(596px + var(--oy)), calc(var(--stage-h) - 84px));
   translate: -50% 0;
   padding: 8px 12px;
   margin: 0; border: 0; background: none;
@@ -168,7 +173,7 @@ html, body {
 /* ---------- Chọn ngôn ngữ (Figma 114:6254) ---------- */
 .lang {
   position: absolute;
-  left: 50%; top: 772px;
+  left: 50%; top: min(calc(772px + var(--oy)), calc(var(--stage-h) - 48px));
   translate: -50% 0;
   display: flex; align-items: center; gap: 4px;
   padding: 8px 12px;
