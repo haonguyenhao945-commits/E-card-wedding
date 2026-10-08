@@ -316,7 +316,7 @@
       letter.setAttribute('aria-hidden', 'true');
       letter.removeAttribute('tabindex');
       const toB = reduceMotion ? 0 : 1450;   // trang trong đã xuống gần hết → gập nắp
-      const toEnd = reduceMotion ? 0 : toB + 2900; // nắp đóng xong + bìa hiện lại
+      const toEnd = reduceMotion ? 0 : toB + 3200; // nắp đóng xong (1.75s) + bìa hiện lại (trễ 1.85s + mờ dần .35s)
       setTimeout(() => stage.classList.remove('is-closing-a', 'is-open'), toB);
       setTimeout(resetAfterClose, toEnd);
     };
