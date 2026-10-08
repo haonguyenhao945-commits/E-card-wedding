@@ -315,8 +315,8 @@
       stage.classList.remove('is-settled', 'is-inside');
       letter.setAttribute('aria-hidden', 'true');
       letter.removeAttribute('tabindex');
-      const toB = reduceMotion ? 0 : 1450;   // trang trong đã xuống gần hết → gập nắp
-      const toEnd = reduceMotion ? 0 : toB + 3200; // nắp đóng xong (1.75s) + bìa hiện lại (trễ 1.85s + mờ dần .35s)
+      const toB = reduceMotion ? 0 : 1150;   // trang trong đã xuống gần hết → gập nắp
+      const toEnd = reduceMotion ? 0 : toB + 1700; // nắp đóng xong (1.1s) + bìa hiện lại (trễ 1.15s + mờ dần .35s) ≈ 2.9s tổng
       setTimeout(() => stage.classList.remove('is-closing-a', 'is-open'), toB);
       setTimeout(resetAfterClose, toEnd);
     };
