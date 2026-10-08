@@ -46,6 +46,7 @@
       cdAria: 'Đếm ngược đến ngày cưới',
       days: 'Ngày', hours: 'Giờ', minutes: 'Phút', seconds: 'Giây',
       thanks: 'Thank you!',
+      closeAria: 'Đóng thiệp',
       back: 'Quay lại', heroAltBride: 'Thiệp mời đám cưới nhà gái — Duy & Hảo',
       ev1: 'THÁNH LỄ HÔN PHỐI được cử hành vào lúc', ev2: 'LỄ VU QUY được cử hành vào lúc', ev3: 'TIỆC THÂN MẬT được cử hành vào lúc',
       sat: 'Thứ Bảy,\n19.12.2026', place1: 'Giáo xứ Thánh Tâm - Lộc Tiến',
@@ -67,6 +68,7 @@
       cdAria: 'Countdown to the wedding day',
       days: 'Days', hours: 'Hours', minutes: 'Minutes', seconds: 'Seconds',
       thanks: 'Thank you!',
+      closeAria: 'Close the invitation',
       back: 'Back', heroAltBride: "The bride's family wedding invitation — Duy & Hảo",
       ev1: 'HOLY MATRIMONY MASS will be held at', ev2: 'THE VU QUY CEREMONY will be held at', ev3: 'THE INTIMATE RECEPTION will be held at',
       sat: 'Saturday,\n19.12.2026', place1: 'Thánh Tâm Catholic Church - Lộc Tiến',
@@ -153,6 +155,7 @@
      - .rv / .rv-stagger / .rv-fade : hiện dần thông thường
      - .rv-after  : hiện sau ảnh nền đứng trước nó (đồng hồ đếm ngược sau ảnh nền) */
   function splitLines(el) {
+    if (el.querySelector(':scope > .ln')) return; // đã tách rồi (ví dụ sau khi đóng rồi mở lại thiệp)
     const text = el.textContent.replace(/\s+/g, ' ').trim();
     const frag = document.createDocumentFragment();
     el.childNodes.forEach((n) => {
@@ -285,6 +288,44 @@
   subBack.addEventListener('click', () => closeSub());
   window.addEventListener('popstate', () => { if (activeSub) closeSub(true); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && activeSub) closeSub(); });
+
+  /* ---------- Đóng thiệp: bấm dấu sáp cuối trang → chạy ngược chuyển động lúc mở ----------
+     Pha A: trang trong trượt xuống + thân phong bì trở lên. Pha B: nắp gập lại, cảnh trượt lên, bìa hiện lại.
+     Cuối cùng đặt lại trạng thái để người xem có thể mở thiệp lần nữa. */
+  let closing = false;
+  function resetAfterClose() {
+    stage.classList.remove('is-closing', 'is-closing-a');
+    document.getElementById('seal').tabIndex = 0;
+    document.getElementById('cta').tabIndex = 0;
+    letter.scrollTop = 0;
+    // cho phép các khối hiện dần lại từ đầu ở lần mở sau
+    [letter, ...Object.values(SUBS).map((s) => s.el)].forEach((rootEl) => {
+      rootEl.querySelectorAll('.is-in').forEach((n) => n.classList.remove('is-in'));
+      rootEl.scrollTop = 0;
+      revealed.delete(rootEl);
+    });
+    opened = false;
+    closing = false;
+  }
+  function closeEnvelope() {
+    if (!opened || closing || !stage.classList.contains('is-settled')) return;
+    closing = true;
+    const run = () => {
+      stage.classList.add('is-closing', 'is-closing-a');
+      stage.classList.remove('is-settled', 'is-inside');
+      letter.setAttribute('aria-hidden', 'true');
+      letter.removeAttribute('tabindex');
+      const toB = reduceMotion ? 0 : 1450;   // trang trong đã xuống gần hết → gập nắp
+      const toEnd = reduceMotion ? 0 : toB + 2900; // nắp đóng xong + bìa hiện lại
+      setTimeout(() => stage.classList.remove('is-closing-a', 'is-open'), toB);
+      setTimeout(resetAfterClose, toEnd);
+    };
+    if (activeSub) { closeSub(); setTimeout(run, reduceMotion ? 0 : 650); } else run();
+  }
+  document.querySelectorAll('[data-close-envelope]').forEach((b) => {
+    b.addEventListener('click', closeEnvelope);
+    b.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); closeEnvelope(); } });
+  });
 
   document.getElementById('seal').addEventListener('click', openInvitation);
   document.getElementById('cta').addEventListener('click', openInvitation);

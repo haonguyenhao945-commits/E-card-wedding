@@ -162,6 +162,12 @@ html, body {
 /* Trang 2 (cả frame) đẩy từ dưới lên, chen giữa lớp sau (nền + nắp) và lớp trước (thân phong bì);
    thân phong bì tiếp tục trượt xuống để nhường chỗ cho trang. */
 .stage.is-settled .scene { visibility: hidden; }
+
+/* ---------- Đóng thiệp (bấm dấu sáp cuối trang) = chạy ngược lúc mở ----------
+   Pha A (is-closing-a): trang trong trượt xuống, thân phong bì trở lên.
+   Pha B (bỏ is-open)  : nắp gập lại, cảnh trượt lên, dấu sáp/tên/CTA/nút ngôn ngữ hiện lại sau khi nắp đã đóng. */
+.stage.is-closing-a .scene--front { transition: translate 1.2s cubic-bezier(.3, .1, .2, 1) 0s; }
+.stage.is-closing .names, .stage.is-closing .seal, .stage.is-closing .cta, .stage.is-closing .lang { transition-delay: 1.25s; }
 .stage.is-inside .letter { translate: 0 0; pointer-events: auto; transition: translate 1.7s cubic-bezier(.45, .1, .25, 1); }
 .stage.is-inside .scene--front { translate: 0 1100px; transition: translate 1.2s cubic-bezier(.5, 0, .3, 1) .9s; }
 

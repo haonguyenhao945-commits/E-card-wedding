@@ -10,6 +10,7 @@
   translate: 0 100%; /* nằm dưới đáy khung (cao bằng khung), chờ đẩy lên */
   pointer-events: none;
   will-change: translate;
+  transition: translate 1.3s cubic-bezier(.55, 0, .35, 1); /* chiều đi xuống khi đóng thiệp */
   scrollbar-width: none;
   overscroll-behavior: contain;
 }
@@ -216,3 +217,9 @@
 .end-seal--groom { top: 1951px; }
 .end-date--groom { top: 2083.1px; }
 .thanks--groom { top: 2149.1px; }
+
+/* Dấu sáp cuối trang bấm được: đóng thiệp, quay về phong bì chưa mở */
+.end-seal[data-close-envelope] { cursor: pointer; }
+.end-seal[data-close-envelope].is-in:hover { scale: 1.06; }
+.end-seal[data-close-envelope]:active { scale: .96; }
+.end-seal[data-close-envelope]:focus-visible { outline: 2px solid #430815; outline-offset: 6px; border-radius: 50%; }
