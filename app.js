@@ -67,9 +67,9 @@
       thanks: 'Thank you!',
       back: 'Back', heroAltBride: "The bride's family wedding invitation — Duy & Hảo",
       ev1: 'HOLY MATRIMONY MASS will be held at', ev2: 'THE VU QUY CEREMONY will be held at', ev3: 'THE INTIMATE RECEPTION will be held at',
-      sat: 'Saturday,\n19.12.2026', place1: 'Thánh Tâm Parish - Lộc Tiến',
-      place2: 'At the family home - 1041 Trần Phú,\nWard 3, Bảo Lộc, Lâm Đồng',
-      arrive: '11:00 - Guests arrive', start: '11:30 - Reception begins',
+      sat: 'Saturday,\n19.12.2026', place1: 'Thánh Tâm Catholic Church - Lộc Tiến',
+      place2: 'At the family home - 1041 Trần Phú, Ward 3, Bảo Lộc, Lâm\u00a0Đồng', // \u00a0: không tách "Lâm Đồng" ra hai dòng
+      arrive: '11:00 - Guests arrive', start: '11:30 - Reception starts',
       heroAltGroom: "The groom's family wedding invitation — Duy & Hảo",
       evT1: 'THE WEDDING CEREMONY will be held at', sun: 'Sunday,\n20.12.2026',
       placeT1: 'At the family home - 22 Street 14A, Củ Chi Hamlet, Tân An Hội Commune, HCMC',
@@ -155,7 +155,7 @@
     const frag = document.createDocumentFragment();
     el.childNodes.forEach((n) => {
       if (n.nodeType === 3) {
-        n.textContent.split(/\s+/).filter(Boolean).forEach((w) => {
+        n.textContent.split(/[ \t\r\n]+/).filter(Boolean).forEach((w) => { // chỉ tách theo khoảng trắng thường, giữ nguyên \u00a0
           const s = document.createElement('span');
           s.className = 'w';
           s.style.display = 'inline-block';
