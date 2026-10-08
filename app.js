@@ -72,8 +72,8 @@
       arrive: '11:00 - Guests arrive', start: '11:30 - Reception starts',
       heroAltGroom: "The groom's family wedding invitation — Duy & Hảo",
       evT1: 'THE WEDDING CEREMONY will be held at', sun: 'Sunday,\n20.12.2026',
-      placeT1: 'At the family home - 22 Street 14A, Củ Chi Hamlet, Tân An Hội Commune, HCMC',
-      placeT2: 'Dốc Phố Garden\n22 Street No. 35, Tân An Hội Commune, HCMC',
+      placeT1: 'At the family home - 22 Street 14A, Củ\u00a0Chi Hamlet, Tân\u00a0An\u00a0Hội Commune, HCMC',
+      placeT2: 'Hoa Viên Dốc Phố\n22 Street No. 35, Tân\u00a0An\u00a0Hội Commune, HCMC', // tên riêng giữ nguyên tiếng Việt
     },
   };
   let lang = 'vi';
