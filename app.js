@@ -265,6 +265,7 @@
     const { el, hash } = SUBS[key];
     activeSub = key;
     stage.classList.add('is-sub', 'is-sub-' + key);
+    document.querySelectorAll('.invite__btns').forEach((b) => b.classList.add('is-seen')); // đã xem rồi: dừng hiệu ứng thu hút ở hai nút
     el.setAttribute('aria-hidden', 'false');
     el.scrollTop = 0;
     el.tabIndex = 0;

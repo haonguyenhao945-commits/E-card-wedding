@@ -52,6 +52,8 @@
 .pill:hover .pill__arrow { translate: 3px 0; }
 .invite__btns.is-in .pill { animation: pill-pulse 1.9s ease-out 1.6s 3; }
 .invite__btns.is-in .pill:hover, .invite__btns.is-in .pill:active { animation: none; }
+/* Người xem đã bấm vào xem rồi (is-seen, do app.js gán) thì không cần thu hút nữa */
+.invite__btns.is-in.is-seen .pill, .invite__btns.is-in.is-seen .pill .pill__arrow { animation: none; }
 .invite__btns.is-in .pill .pill__arrow { animation: arrow-nudge 1.9s ease-in-out 1.6s 3; }
 @keyframes pill-pulse {
   0%   { box-shadow: 0 0 0 0 rgba(171, 13, 45, .45); }
