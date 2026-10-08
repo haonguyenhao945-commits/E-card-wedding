@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1e1e1e">
+  <title>Duy &amp; Hảo — Thiệp cưới</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="viewport">
+    <div class="stage" id="stage">
+
+      <!-- Lớp NỀN của cảnh phong bì. Trang trong trồi lên đè lên lớp này -->
+      <div class="scene scene--bg" aria-hidden="true">
+        <!-- Bản sao nền lật dọc nằm phía trên, để khi cảnh trượt xuống không lộ khoảng trống -->
+        <img class="layer layer--bg layer--bg-top" src="assets/Rectangle%206.svg" alt="" width="390" height="844" draggable="false">
+        <!-- Nền giấy: Rectangle 6 (104:380) -->
+        <img class="layer layer--bg" src="assets/Rectangle%206.svg" alt="" width="390" height="844" draggable="false">
+      </div>
+
+      <!-- Trang trong (Figma 104:810, Frame 2 · 390×2028) — cuộn dọc -->
+      <section class="letter" id="letter" aria-hidden="true">
+        <div class="page">
+
+          <!-- ===== Hero: ảnh phong bì mở + thiệp + hoa (780×1038 = 2x của 390×519) ===== -->
+          <img class="hero rv rv--hero" src="assets/inner/hero.webp" alt="Thiệp mời đám cưới Duy &amp; Hảo" data-i18n-alt="heroAlt" width="390" height="519" fetchpriority="high" draggable="false">
+
+          <!-- ===== Frame 78: tên + lời báo tin (Nhà gái / Nhà trai) ===== -->
+          <div class="info">
+            <div class="couple">
+              <div class="person">
+                <p class="role split" data-i18n="groom">Quý Nam</p>
+                <span class="mask-up rv-up"><img src="assets/inner/name-groom.svg" alt="Nguyễn Khánh Duy" width="328" height="42"></span>
+              </div>
+              <div class="amp-row rv-stagger">
+                <img class="pig pig--flip" src="assets/inner/pig.png" alt="" width="48" height="48">
+                <span class="amp">&amp;</span>
+                <img class="pig" src="assets/inner/pig.png" alt="" width="48" height="48">
+              </div>
+              <div class="person">
+                <p class="role split" data-i18n="bride">Út Nữ</p>
+                <span class="mask-up rv-up"><img src="assets/inner/name-bride.svg" alt="Nguyễn Thị Thu Hảo" width="355" height="43"></span>
+              </div>
+            </div>
+
+            <div class="invite">
+              <p class="invite__title split" data-i18n="announce">Trân trọng báo tin</p>
+              <div class="invite__btns rv-stagger">
+                <button class="pill" type="button" data-open-sub="bride" aria-haspopup="true" data-i18n="brideSide">Nhà gái</button>
+                <button class="pill" type="button" data-open-sub="groom" aria-haspopup="true" data-i18n="groomSide">Nhà Trai</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== Count down ===== -->
+          <section class="countdown" aria-label="Đếm ngược đến ngày cưới" data-i18n-aria="cdAria">
+            <div class="cd-photos">
+              <div class="cd-photo rv-fade" data-reveal-after=".cd-row"><img src="assets/inner/forest.png" alt="" style="top:0" draggable="false"></div>
+              <div class="cd-photo rv-fade"><img src="assets/inner/forest.png" alt="" style="top:-267px" draggable="false"></div>
+              <div class="cd-photo rv-fade"><img src="assets/inner/forest.png" alt="" style="top:-534px" draggable="false"></div>
+            </div>
+            <div class="cd-row rv-stagger rv-after" role="timer">
+              <div class="cd-cell" style="width:32px"><b data-cd="d">65</b><span data-i18n="days">Ngày</span></div>
+              <b class="cd-colon">:</b>
+              <div class="cd-cell" style="width:32px"><b data-cd="h">33</b><span data-i18n="hours">Giờ</span></div>
+              <b class="cd-colon">:</b>
+              <div class="cd-cell cd-cell--left" style="width:40px"><b data-cd="m">56</b><span data-i18n="minutes">Phút</span></div>
+              <b class="cd-colon">:</b>
+              <div class="cd-cell cd-cell--left" style="width:34px"><b data-cd="s">24</b><span data-i18n="seconds">Giây</span></div>
+            </div>
+          </section>
+
+
+
+          <img class="end-seal rv rv--pop" src="assets/wax-seal.png" alt="" width="122" height="122" draggable="false">
+          <p class="end-date split">19 - 20.12.2026</p>
+          <p class="thanks split" data-i18n="thanks">Sự hiện diện của quý khách là niềm vinh dự cho gia đình chúng tôi.</p>
+          <div class="pattern-footer rv" role="presentation"></div>
+        </div>
+      </section>
+
+      <!-- Lớp TRƯỚC của cảnh phong bì: thân phong bì (Group 82 → 16), nằm đè lên trang trong -->
+      <div class="scene scene--front" aria-hidden="true">
+        <img class="layer piece piece--left"   src="assets/Rectangle%2017.svg" alt="" width="234" height="844" draggable="false"> <!-- 104:784 -->
+        <img class="layer piece piece--right"  src="assets/Rectangle%2018.svg" alt="" width="234" height="844" draggable="false"> <!-- 104:786 -->
+        <img class="layer piece piece--bottom" src="assets/Rectangle%2016.svg" alt="" width="390" height="486" draggable="false"> <!-- 104:774 -->
+      </div>
+
+      <!-- Lớp NẮP: khi chưa mở nằm trên cùng (trên thân phong bì); khi trang trong trồi lên thì hạ xuống dưới trang -->
+      <div class="scene scene--flap" aria-hidden="true">
+        <!-- Nắp: mặt ngoài Rectangle 15 (104:760), mặt trong Group 85; lật quanh bản lề y≈-40 -->
+        <div class="flap-persp">
+          <div class="flap">
+            <div class="flap__fill" aria-hidden="true"></div>
+            <img class="layer flap__front" src="assets/Rectangle%2015.svg" alt="" width="390" height="505" draggable="false">
+            <img class="layer flap__back"  src="assets/Group%2085.svg"      alt="" width="1233" height="533" draggable="false">
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Trang con "Nhà gái" (Figma 114:2015 · 390×2411) ===== -->
+      <section class="sub" id="sub-bride" aria-hidden="true">
+        <div class="page page--sub">
+          <img class="hero rv rv--hero" src="assets/nha-gai/hero.png" alt="Thiệp mời đám cưới nhà gái — Duy &amp; Hảo" data-i18n-alt="heroAltBride" width="390" height="514" draggable="false">
+
+          <!-- Frame 78: tên + lịch lễ -->
+          <div class="info info--bride">
+            <div class="couple couple--bride">
+              <div class="person person--bride">
+                <p class="role split" data-i18n="bride">Út Nữ</p>
+                <span class="mask-up rv-up"><img src="assets/nha-gai/name-bride.svg" alt="Maria Nguyễn Thị Thu Hảo" width="368" height="34"></span>
+              </div>
+              <div class="amp-row rv-stagger">
+                <img class="pig pig--flip" src="assets/inner/pig.png" alt="" width="48" height="48">
+                <span class="amp">&amp;</span>
+                <img class="pig" src="assets/inner/pig.png" alt="" width="48" height="48">
+              </div>
+              <div class="person person--bride">
+                <p class="role split" data-i18n="groom">Quý Nam</p>
+                <span class="mask-up rv-up"><img src="assets/nha-gai/name-groom.svg" alt="Phaolo Nguyễn Khánh Duy" width="360" height="34"></span>
+              </div>
+            </div>
+
+            <div class="events">
+              <div class="event rv-group">
+                <p class="ev-title split" data-i18n="ev1">THÁNH LỄ HÔN PHỐI được cử hành vào lúc</p>
+                <div class="ev-row ev-row--top">
+                  <span class="ev-time split">04:30</span>
+                  <span class="ev-sep ev-sep--short"></span>
+                  <span class="ev-date split" data-i18n="sat">Thứ Bảy,<br>19.12.2026</span>
+                  <span class="ev-sep ev-sep--short"></span>
+                  <span class="ev-place split" style="width:161.602px" data-i18n="place1">Giáo xứ Thánh Tâm - Lộc Tiến</span>
+                </div>
+              </div>
+              <div class="event rv-group">
+                <p class="ev-title split" data-i18n="ev2">LỄ VU QUY được cử hành vào lúc</p>
+                <div class="ev-row">
+                  <span class="ev-time split">09:00</span>
+                  <span class="ev-gap"><i class="ev-sep"></i></span>
+                  <span class="ev-date split" data-i18n="sat">Thứ Bảy,<br>19.12.2026</span>
+                  <span class="ev-gap"><i class="ev-sep"></i></span>
+                  <span class="ev-place split" style="width:176px" data-i18n="place2">Tại Tư Gia - 1041 Trần Phú,<br>Phường 3 Bảo Lộc, Lâm Đồng</span>
+                </div>
+              </div>
+              <div class="event event--party">
+                <div class="rv-group">
+                  <p class="ev-title split" data-i18n="ev3">TIỆC THÂN MẬT được cử hành vào lúc</p>
+                  <div class="ev-row">
+                    <span class="ev-time ev-time--multi"><span class="split" data-i18n="arrive">11:00 - Đón khách</span><span class="split" data-i18n="start">11:30 - Khai tiệc</span></span>
+                    <span class="ev-gap"><i class="ev-sep"></i></span>
+                    <span class="ev-date split" data-i18n="sat">Thứ Bảy,<br>19.12.2026</span>
+                    <span class="ev-gap"><i class="ev-sep"></i></span>
+                    <span class="ev-place split" style="width:113px" data-i18n="place1">Giáo xứ Thánh Tâm - Lộc Tiến</span>
+                  </div>
+                </div>
+                <div class="qr rv"><img src="assets/nha-gai/qr.png" alt="Mã QR" width="152" height="152"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frame 86: đếm ngược + dấu sáp + ngày cưới (bắt đầu y=1263.3) -->
+          <section class="countdown countdown--sub" aria-label="Đếm ngược đến ngày cưới" data-i18n-aria="cdAria">
+            <div class="cd-photos">
+              <div class="cd-photo rv-fade" data-reveal-after=".cd-row"><img src="assets/nha-gai/village.png" alt="" style="top:-19.31px" draggable="false"></div>
+              <div class="cd-photo rv-fade"><img src="assets/nha-gai/village.png" alt="" style="top:-312.31px" draggable="false"></div>
+              <div class="cd-photo rv-fade"><img src="assets/nha-gai/village.png" alt="" style="top:-598.31px" draggable="false"></div>
+            </div>
+            <div class="cd-row rv-stagger rv-after" role="timer">
+              <div class="cd-cell" style="width:32px"><b data-cd="d">65</b><span data-i18n="days">Ngày</span></div>
+              <b class="cd-colon">:</b>
+              <div class="cd-cell" style="width:32px"><b data-cd="h">33</b><span data-i18n="hours">Giờ</span></div>
+              <b class="cd-colon">:</b>
+              <div class="cd-cell cd-cell--left" style="width:40px"><b data-cd="m">56</b><span data-i18n="minutes">Phút</span></div>
+              <b class="cd-colon">:</b>
+              <div class="cd-cell cd-cell--left" style="width:34px"><b data-cd="s">24</b><span data-i18n="seconds">Giây</span></div>
+            </div>
+          </section>
+
+          <img class="end-seal end-seal--sub rv rv--pop" src="assets/wax-seal.png" alt="" width="122" height="122" draggable="false">
+          <p class="end-date end-date--sub split">19 - 20.12.2026</p>
+          <p class="thanks thanks--sub split" data-i18n="thanks">Sự hiện diện của quý khách là niềm vinh dự cho gia đình chúng tôi.</p>
+          <div class="pattern-footer pattern-footer--sub rv" role="presentation"></div>
+        </div>
+      </section>
+
+      <!-- ===== Trang con "Nhà trai" (Figma 114:3723 · 390×2338) ===== -->
+      <section class="sub" id="sub-groom" aria-hidden="true">
+        <div class="page page--groom">
+          <img class="hero rv rv--hero" src="assets/nha-trai/hero.png" alt="Thiệp mời đám cưới nhà trai — Duy &amp; Hảo" data-i18n-alt="heroAltGroom" width="390" height="514" draggable="false">
+
+          <!-- Frame 78: tên + lịch lễ -->
+          <div class="info info--bride">
+            <div class="couple">
+              <div class="person">
+                <p class="role split" data-i18n="groom">Quý Nam</p>
+                <span class="mask-up rv-up"><img src="assets/inner/name-groom.svg" alt="Nguyễn Khánh Duy" width="328" height="42"></span>
+              </div>
+              <div class="amp-row rv-stagger">
+                <img class="pig pig--flip" src="assets/inner/pig.png" alt="" width="48" height="48">
+                <span class="amp">&amp;</span>
+                <img class="pig" src="assets/inner/pig.png" alt="" width="48" height="48">
+              </div>
+              <div class="person">
+                <p class="role split" data-i18n="bride">Út Nữ</p>
+                <span class="mask-up rv-up"><img src="assets/inner/name-bride.svg" alt="Nguyễn Thị Thu Hảo" width="355" height="43"></span>
+              </div>
+            </div>
+
+            <div class="events">
+              <div class="event rv-group">
+                <p class="ev-title split" data-i18n="evT1">LỄ TÂN HÔN được cử hành vào lúc</p>
+                <div class="ev-row ev-row--top">
+                  <span class="ev-time split">10:00</span>
+                  <span class="ev-gap"><i class="ev-sep"></i></span>
+                  <span class="ev-date split" data-i18n="sun">Chủ Nhật,<br>20.12.2026</span>
+                  <span class="ev-gap"><i class="ev-sep"></i></span>
+                  <span class="ev-place split" style="width:198px" data-i18n="placeT1">Tại Tư Gia - Số 22, Đường 14A, Ấp Củ Chi, Xã Tân An Hội, TP.HCM</span>
+                </div>
+              </div>
+              <div class="event event--party">
+                <div class="rv-group">
+                  <p class="ev-title split" data-i18n="ev3">TIỆC THÂN MẬT được cử hành vào lúc</p>
+                  <div class="ev-row">
+                    <span class="ev-time ev-time--multi"><span class="split" data-i18n="arrive">11:00 - Đón khách</span><span class="split" data-i18n="start">11:30 - Khai tiệc</span></span>
+                    <span class="ev-gap"><i class="ev-sep"></i></span>
+                    <span class="ev-date split" data-i18n="sun">Chủ Nhật,<br>20.12.2026</span>
+                    <span class="ev-gap"><i class="ev-sep"></i></span>
+                    <span class="ev-place split" style="width:118px" data-i18n="placeT2">Hoa Viên Dốc Phố<br>22 Đường số 35, Xã Tân An Hội, TP.HCM</span>
+                  </div>
+                </div>
+                <div class="qr rv"><img src="assets/nha-trai/qr.png" alt="Mã QR" width="152" height="152"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frame 87: đếm ngược + dấu sáp + ngày cưới (bắt đầu y=1190.1) -->
+          <section class="countdown countdown--groom" aria-label="Đếm ngược đến ngày cưới" data-i18n-aria="cdAria">
+            <div class="cd-photos">
+              <div class="cd-photo rv-fade" data-reveal-after=".cd-row"><img src="assets/nha-trai/photo-1.png" alt="" style="width:380px;height:476px;top:-61.07px" draggable="false"></div>
+              <div class="cd-photo rv-fade"><img src="assets/nha-trai/photo-2.png" alt="" style="width:381px;height:508px;top:-45.07px;left:calc(50% + .5px)" draggable="false"></div>
+              <div class="cd-photo rv-fade"><img src="assets/nha-trai/photo-3.png" alt="" style="width:389px;height:520px;top:-67.07px;left:calc(50% - .5px)" draggable="false"></div>
+            </div>
+            <div class="cd-row rv-stagger rv-after" role="timer">
+              <div class="cd-cell" style="width:32px"><b data-cd="d">65</b><span data-i18n="days">Ngày</span></div>
+              <b class="cd-colon">:</b>
+              <div class="cd-cell" style="width:32px"><b data-cd="h">33</b><span data-i18n="hours">Giờ</span></div>
+              <b class="cd-colon">:</b>
+              <div class="cd-cell cd-cell--left" style="width:40px"><b data-cd="m">56</b><span data-i18n="minutes">Phút</span></div>
+              <b class="cd-colon">:</b>
+              <div class="cd-cell cd-cell--left" style="width:34px"><b data-cd="s">24</b><span data-i18n="seconds">Giây</span></div>
+            </div>
+          </section>
+
+          <img class="end-seal end-seal--groom rv rv--pop" src="assets/wax-seal.png" alt="" width="122" height="122" draggable="false">
+          <p class="end-date end-date--groom split">19 - 20.12.2026</p>
+          <p class="thanks thanks--groom split" data-i18n="thanks">Sự hiện diện của quý khách là niềm vinh dự cho gia đình chúng tôi.</p>
+          <div class="pattern-footer pattern-footer--groom rv" role="presentation"></div>
+        </div>
+      </section>
+
+      <!-- Nút quay lại từ trang con (hiện khi trang con mở) -->
+      <button class="sub-back" id="sub-back" type="button" aria-label="Quay lại" data-i18n-aria="back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5" stroke="#beb785" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <!-- Tên cô dâu chú rể (104:788) -->
+      <div class="names" id="names" aria-hidden="true">
+        <div class="names__rot"><img src="assets/couple-name.svg" alt="" width="244" height="222"></div>
+      </div>
+
+      <!-- Dấu sáp (104:771) -->
+      <button class="seal" id="seal" type="button" aria-label="Mở thiệp" data-i18n-aria="openAria">
+        <img src="assets/wax-seal.png" alt="" width="268" height="268" draggable="false">
+      </button>
+
+      <!-- CTA (104:794) -->
+      <button class="cta" id="cta" type="button"><span data-i18n="open">mở thiệp</span></button>
+
+      <!-- Chọn ngôn ngữ (Figma 114:6254 · Login state) -->
+      <button class="lang" id="lang" type="button" aria-label="Switch to English" data-i18n-aria="langAria">
+        <img src="assets/lang-icon.svg" alt="" width="16" height="16" draggable="false">
+        <span data-i18n="langName">Tiếng Việt</span>
+      </button>
+
+      <h1 class="sr-only" data-i18n="h1">Thiệp cưới Duy &amp; Hảo</h1>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

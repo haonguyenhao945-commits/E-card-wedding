@@ -1,0 +1,4 @@
+.DS_Store
+.claude/
+# bản quay màn hình dùng để tham khảo chuyển động, không thuộc về web
+*.mov

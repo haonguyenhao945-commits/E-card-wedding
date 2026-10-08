@@ -1,0 +1,200 @@
+/* ==========================================================================
+   Trang trong — Figma 104:810 (Frame 2 · 390×2028)
+   Tọa độ lấy từ Figma, nhóm theo từng khối. Nội dung cuộn dọc trong khung 390px.
+   ========================================================================== */
+
+.letter {
+  position: absolute; inset: 0;
+  overflow-x: hidden; overflow-y: auto;
+  background: var(--page);
+  translate: 0 844px; /* nằm dưới đáy khung, chờ đẩy lên */
+  pointer-events: none;
+  will-change: translate;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+}
+.letter::-webkit-scrollbar { display: none; }
+.letter:focus-visible { outline: none; }
+
+.page { position: relative; width: 390px; height: 2028px; overflow: hidden; color: #430815; font-family: 'Inter', system-ui, sans-serif; }
+.page p { margin: 0; }
+.page img { display: block; max-width: none; user-select: none; -webkit-user-drag: none; }
+
+/* ------------------------------------------------------------------ Hero */
+/* Một ảnh webp trong suốt (780×1038) thay cho toàn bộ hero ghép nhiều lớp trước đây */
+.hero { position: absolute; left: 0; top: 0; width: 390px; height: 519px; }
+
+/* ------------------------------------------------------- Frame 78: tên + lịch lễ */
+.info { position: absolute; left: 16px; top: 501px; width: 358px; height: 333.3px; display: flex; flex-direction: column; align-items: center; gap: 60px; }
+.couple { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 10.309px; }
+.person { display: flex; flex-direction: column; align-items: center; gap: 5.154px; }
+.role { font-size: 14px; font-weight: 500; line-height: normal; text-align: center; }
+.amp-row { display: flex; align-items: center; justify-content: center; gap: 24px; }
+.pig { width: 48px; height: 48px; object-fit: cover; object-position: bottom; }
+.pig--flip { transform: scaleX(-1); }
+.amp { font-family: 'Great Vibes', cursive; font-size: 37.798px; line-height: normal; white-space: nowrap; }
+
+/* Frame 83: Trân trọng báo tin + hai nút */
+.invite { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.invite__title { width: 291.753px; font-size: 14px; font-weight: 500; line-height: normal; text-align: center; }
+.invite__btns { width: 100%; display: flex; gap: 8px; align-items: flex-start; }
+.pill {
+  flex: 1 0 0; min-width: 1px; padding: 8px 24px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(171, 13, 45, .4); border: 1px solid #ece7bc; border-radius: 9999px;
+  color: #430815; font: 600 14px/normal 'Inter', system-ui, sans-serif; text-transform: uppercase; white-space: nowrap; text-align: center;
+  cursor: pointer; transition: background-color .25s ease, scale .2s ease;
+}
+.pill:hover { background: rgba(171, 13, 45, .52); }
+.pill:active { scale: .97; }
+.pill:focus-visible { outline: 2px solid #430815; outline-offset: 3px; }
+
+/* ------------------------------------------------------------- Count down */
+.countdown { position: absolute; left: 0; top: 895px; width: 390px; height: 822px; padding: 8px; background: #530818; }
+.cd-photos { display: flex; flex-direction: column; gap: 4px; width: 374px; }
+/* ba ô 374×266, bo 16px; mỗi ô là một lát của cùng một ảnh rừng 450×800 */
+.cd-photo { position: relative; height: 266px; border-radius: 16px; overflow: hidden; }
+.cd-photo img { position: absolute; left: 50%; width: 450px; height: 800px; object-fit: cover; transform: translateX(-50%); }
+.cd-row { position: absolute; left: 16px; top: 16px; width: 358px; padding: 16px; border-radius: 8px; display: flex; gap: 16px; align-items: flex-start; justify-content: center; text-align: center; line-height: normal; }
+.cd-cell { display: flex; flex-direction: column; align-items: center; }
+.cd-cell b { width: 100%; font-size: 24px; font-weight: 700; color: #f5f2db; font-variant-numeric: tabular-nums; }
+.cd-cell span { width: 100%; font-size: 12px; font-weight: 400; color: #a4a183; }
+.cd-colon { font-size: 24px; font-weight: 700; color: #a4a183; white-space: nowrap; }
+
+.end-seal { position: absolute; left: 134px; top: 1634px; width: 122px; height: 122px; object-fit: cover; filter: drop-shadow(0 4px 8px rgba(37, 39, 25, .32)); }
+.end-date { position: absolute; left: 94px; top: 1772px; width: 202px; height: 50px; font-family: 'Great Vibes', cursive; font-size: 40px; line-height: normal; text-align: center; white-space: nowrap; }
+
+/* ==========================================================================
+   Hiện dần theo cuộn: IntersectionObserver (app.js) thêm .is-in khi khối cuộn tới
+   ========================================================================== */
+/* Mọi phần tử cùng kiểu: đẩy từ dưới lên. --rd = độ trễ theo hàng (app.js gán theo thứ tự trên-xuống trong cùng một lượt cuộn tới),
+   --ld = độ trễ giữa các dòng trong một khối chữ, --i = thứ tự con trong một hàng (.rv-stagger). */
+:root { --push-ease: cubic-bezier(.22, .8, .24, 1); }
+.rv, .rv-stagger > * {
+  opacity: 0;
+  translate: 0 44px;
+  transition:
+    opacity .6s ease calc(var(--rd, 0s) + var(--i, 0) * .06s),
+    translate 1s var(--push-ease) calc(var(--rd, 0s) + var(--i, 0) * .06s);
+}
+.rv.is-in, .rv-stagger.is-in > * { opacity: 1; translate: 0 0; }
+
+/* Ảnh hero: trồi lên mạnh hơn và rõ dần */
+.rv--hero { translate: 0 64px; scale: .97; transform-origin: 50% 40%;
+  transition: opacity .8s ease var(--rd, 0s), translate 1.2s var(--push-ease) var(--rd, 0s), scale 1.2s var(--push-ease) var(--rd, 0s); }
+.rv--hero.is-in { scale: 1; }
+
+/* Dấu sáp cuối trang: đẩy lên rồi bật nhẹ ra */
+.rv--pop { translate: 0 44px; scale: .85;
+  transition: opacity .6s ease var(--rd, 0s), translate 1s var(--push-ease) var(--rd, 0s), scale 1s cubic-bezier(.34, 1.4, .5, 1) var(--rd, 0s); }
+.rv--pop.is-in { scale: 1; }
+
+/* Tên viết tay: đẩy từ dưới lên trong khung cắt (chừa đệm để không cắt nét đuôi chữ) */
+.mask-up { display: block; overflow: hidden; padding: 8px 6px; margin: -8px -6px; }
+.rv-up img { translate: 0 108%; opacity: 0; transition: translate 1.1s var(--push-ease) var(--rd, 0s), opacity .6s ease var(--rd, 0s); }
+.rv-up.is-in img { translate: 0 0; opacity: 1; }
+
+/* Chữ: JS tách thành từng dòng (.ln), mỗi dòng đẩy từ dưới lên trong khung cắt; các dòng cùng hàng hiện cùng lúc, hàng sau nối tiếp */
+.ln { display: block; overflow: hidden; padding: .16em 0; margin: -.16em 0; }
+.ln-in { display: block; translate: 0 118%; opacity: 0;
+  transition: translate 1s var(--push-ease) calc(var(--rd, 0s) + var(--ld, 0s)), opacity .5s ease calc(var(--rd, 0s) + var(--ld, 0s)); }
+.split.is-in .ln-in, .rv-group.is-in .ln-in { translate: 0 0; opacity: 1; }
+
+/* Ô ảnh đếm ngược: đẩy từ dưới lên, lần lượt từng ô */
+.rv-fade { opacity: 0; translate: 0 56px; transition: opacity .7s ease var(--rd, 0s), translate 1.1s var(--push-ease) var(--rd, 0s); }
+.rv-fade.is-in { opacity: 1; translate: 0 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rv, .rv-stagger > *, .rv-fade, .rv-up img, .ln-in { opacity: 1; translate: none; scale: none; transition: none; }
+}
+
+/* Lời cảm ơn + dải hoạ tiết cuối trang (Frame 85) */
+.thanks { position: absolute; left: 49px; top: 1838px; width: 291.8px; height: 30px; font-size: 12px; font-weight: 500; line-height: normal; text-align: center; }
+/* Dải hoạ tiết nằm sát đáy trang: trang kết thúc ngay ở mép dưới của nó, không còn khoảng trắng */
+.pattern-footer { position: absolute; left: 0; bottom: 0; width: 390px; height: 100px; background: url("assets/Pattern%20footer.svg") center bottom / 390px 100px no-repeat; }
+
+/* ==========================================================================
+   Trang con "Nhà gái" — Figma 114:2015 (390×2411)
+   ========================================================================== */
+.sub {
+  position: absolute; inset: 0; z-index: 9;
+  overflow-x: hidden; overflow-y: auto;
+  background: var(--page);
+  translate: 100% 0;
+  pointer-events: none;
+  visibility: hidden;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+  transition: translate .7s cubic-bezier(.22, .8, .24, 1), visibility 0s linear .7s;
+  box-shadow: -12px 0 30px rgba(37, 39, 25, .18);
+}
+.sub::-webkit-scrollbar { display: none; }
+.sub:focus-visible { outline: none; }
+.stage.is-sub-bride #sub-bride, .stage.is-sub-groom #sub-groom { translate: 0 0; pointer-events: auto; visibility: visible; transition-delay: 0s; }
+/* trang chính lùi nhẹ sang trái khi trang con trượt vào */
+.stage.is-inside.is-sub .letter {
+  translate: -22% 0;
+  visibility: hidden; /* ẩn hẳn sau khi trang con trượt xong, để màu trang chính không lọt ra qua mép nửa điểm ảnh */
+  transition: translate .7s cubic-bezier(.22, .8, .24, 1), visibility 0s linear .7s;
+}
+
+.sub-back {
+  position: absolute; left: 14px; top: 14px; z-index: 10;
+  width: 36px; height: 36px; padding: 0; margin: 0; border: 0; border-radius: 9999px;
+  display: flex; align-items: center; justify-content: center;
+  background: #2a2e17; cursor: pointer;
+  opacity: 0; pointer-events: none;
+  transition: opacity .35s ease .25s, background-color .25s ease, scale .2s ease;
+}
+.stage.is-sub .sub-back { opacity: 1; pointer-events: auto; }
+.sub-back:hover { background: #3a4020; }
+.sub-back:active { scale: .94; }
+.sub-back:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+.page--sub { height: 2396.3px; } /* = y của dải hoạ tiết (2296.3) + 100 */
+
+/* Tên + lịch lễ */
+.info--bride { height: auto; gap: 80px; }
+.couple--bride { gap: 24px; }
+.person--bride { gap: 4.125px; }
+.person--bride .mask-up { flex: none; }
+
+.events { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 26.766px; }
+.event { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.event--party { gap: 24px; }
+.event--party > .rv-group { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ev-title { width: 100%; font-size: 12px; font-weight: 600; line-height: normal; text-align: center; }
+.ev-row { width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 400; line-height: normal; }
+.ev-row--top { align-items: flex-start; }
+.ev-time { white-space: nowrap; text-align: center; }
+.ev-date { white-space: nowrap; text-align: left; }
+.ev-time--multi { text-align: left; display: flex; flex-direction: column; }
+.ev-time--multi > .split { display: block; }
+.ev-place { flex: none; text-align: left; }
+.ev-gap { flex: 1 0 0; align-self: stretch; display: flex; justify-content: center; min-width: 1px; }
+.ev-sep { display: block; width: .5px; align-self: stretch; background: #430815; }
+.ev-sep--short { width: .5px; height: 13.383px; align-self: auto; }
+.rv-group .ev-sep { opacity: 0; transition: opacity .8s ease calc(var(--rd, 0s) + .3s); }
+.rv-group.is-in .ev-sep { opacity: 1; }
+
+.qr { display: flex; padding: 3.81px; background: #fff; border-radius: 16px; }
+.qr img { width: 152.381px; height: 152.381px; border-radius: 22.857px; object-fit: cover; }
+
+/* Đếm ngược + cuối trang (Frame 86 bắt đầu y=1263.3) */
+.countdown--sub { top: 1263.3px; }
+.countdown--sub .cd-photo img { width: 500px; height: 890px; }
+.end-seal--sub { top: 2024px; }
+.end-date--sub { top: 2156.3px; }
+.thanks--sub { top: 2222.3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sub, .stage.is-inside.is-sub .letter, .sub-back { transition-duration: .01s; transition-delay: 0s; }
+  .rv-group .ev-sep { opacity: 1; transition: none; }
+}
+
+/* Trang con "Nhà trai" — Figma 114:3723 (390×2338). Khung 87 bắt đầu y=1190.1 */
+.page--groom { height: 2323.1px; } /* = y của dải hoạ tiết (2223.1) + 100 */
+.countdown--groom { top: 1190.1px; }
+.end-seal--groom { top: 1951px; }
+.end-date--groom { top: 2083.1px; }
+.thanks--groom { top: 2149.1px; }

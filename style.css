@@ -1,0 +1,190 @@
+@import url("inner.css");
+:root {
+  --paper: #a8a271;
+  --page: #fcfaea; /* nền trang trong (Figma 104:810) */
+  --side: #1e1e1e; /* màu 2 bên khi xem ngoài mobile */
+  --ink: #430815;
+  --cream: #fffbd9;
+  --stage-w: 390px;
+  --stage-h: 844px;
+  --s: 1;
+  --ease-out: cubic-bezier(.22, .8, .24, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--side);
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.viewport { position: fixed; inset: 0; overflow: hidden; background: var(--side); }
+
+/* Khung thiết kế 390×844, scale vừa màn hình và luôn nằm giữa; hai bên (desktop/tablet) là nền #1E1E1E.
+   overflow hidden để các mảnh phong bì trượt ra không tràn sang vùng đen. */
+.stage {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: var(--stage-w); height: var(--stage-h);
+  transform: translate(-50%, -50%) scale(var(--s));
+  transform-origin: center;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* ---------- Nền giấy + các mảnh phong bì ----------
+   Mỗi file SVG là ảnh đã xuất sẵn theo toạ độ khung 390×844 (đã gồm texture giấy và bóng đổ),
+   nên chỉ cần đặt đúng vị trí, không xoay/lật. */
+.layer { position: absolute; display: block; max-width: none; user-select: none; -webkit-user-drag: none; }
+.layer--bg { left: 0; top: 0; width: 390px; height: 844px; }
+
+/* Cảnh: khi mở nắp, cả cảnh trượt xuống (như camera hạ theo nắp đang lật lên) để lộ mặt trong của nắp */
+.scene { position: absolute; inset: 0; pointer-events: none; transition: translate 1.5s cubic-bezier(.45, .05, .2, 1) .25s; }
+/* Bỏ 2px hàng trên cùng của nền (có viền nâu) để chỗ nối giữa bản gốc và bản sao lật không lộ vệt */
+/* Thứ tự lớp: khi đóng, nắp nằm trên thân phong bì (như Figma). Khi trang 2 trồi lên, nắp hạ xuống dưới trang. */
+.scene--bg    { z-index: 1; }
+.scene--flap  { z-index: 6; }
+.letter       { z-index: 4; }
+.scene--front { z-index: 5; }
+.names, .seal, .cta, .lang { z-index: 8; }
+.stage.is-inside .scene--flap { z-index: 3; }
+
+.layer--bg { clip-path: inset(2px 0 0 0); }
+.layer--bg-top { top: -840px; scale: 1 -1; }
+.piece--left   { left: 0;     top: 0;    width: 234px; height: 844px; }  /* Rectangle 17 */
+.piece--right  { left: 156px; top: 0;    width: 234px; height: 844px; }  /* Rectangle 18 */
+.piece--bottom { left: 0;     bottom: 0; width: 390px; height: 486px; }  /* Rectangle 16 */
+
+/* Nắp phong bì: bản lề (cạnh đáy của tam giác) nằm ở y≈-40, ngoài khung phía trên.
+   Lật rotateX(0 → 180°) quanh bản lề; mặt ngoài và mặt trong đều ẩn mặt sau nên tự đổi ở 90°. */
+.flap-persp {
+  position: absolute; left: 0; top: -40px; width: 390px; height: 0;
+  perspective: 1400px; perspective-origin: 195px 420px;
+}
+.flap {
+  position: absolute; inset: 0;
+  transform-style: preserve-3d; transform-origin: 0 0;
+  transition: transform 1.25s cubic-bezier(.5, 0, .2, 1) .25s;
+}
+/* Ảnh nắp xuất ra bắt đầu từ y=0 của khung, còn bản lề ở y≈-40: bù dải 40px bằng chính các hàng trên cùng của ảnh */
+.flap__fill  { position: absolute; left: 0; top: 0; width: 390px; height: 42px; backface-visibility: hidden;
+               background: url(assets/Rectangle%2015.svg) 0 0 / 390px 505px no-repeat; }
+.flap__front { left: 0; top: 40px; width: 390px; height: 505px; backface-visibility: hidden; }
+.flap__back  { left: -420.77px; top: -1.84px; width: 1233px; height: 533px; backface-visibility: hidden; transform: rotateX(180deg); }
+
+/* ---------- Tên (104:788) ---------- */
+.names {
+  position: absolute;
+  left: 56px; top: 43.5px;
+  width: 278.661px; height: 260.874px;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+.names__rot { flex: none; rotate: -10deg; width: 243.832px; height: 221.904px; position: relative; }
+/* Intro: tên được "viết ra" từ trái sang phải (mask quét viền mềm), giống bản ref */
+.names__rot img {
+  position: absolute; inset: 0; display: block; width: 100%; height: 100%; max-width: none;
+  -webkit-mask-image: linear-gradient(90deg, #000 40%, transparent 60%);
+          mask-image: linear-gradient(90deg, #000 40%, transparent 60%);
+  -webkit-mask-size: 250% 100%;           mask-size: 250% 100%;
+  -webkit-mask-repeat: no-repeat;         mask-repeat: no-repeat;
+  -webkit-mask-position: 100% 0;          mask-position: 100% 0;
+  animation: write-on 1.5s cubic-bezier(.45, .05, .25, 1) .5s forwards;
+}
+@keyframes write-on {
+  from { -webkit-mask-position: 100% 0; mask-position: 100% 0; }
+  to   { -webkit-mask-position: 0 0;    mask-position: 0 0; }
+}
+
+/* ---------- Dấu sáp (104:771) ---------- */
+.seal {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 268px; height: 268px;
+  translate: -50% -50%;
+  padding: 0; border: 0; background: none;
+  cursor: pointer;
+  animation: fade-in .7s ease backwards; /* backwards: không giữ opacity, để lúc mở còn mờ dần được */
+  transition: scale .35s var(--ease-out), opacity .35s ease;
+}
+.seal img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  filter: drop-shadow(0 4px 8px rgba(37, 39, 25, .32)); /* bám theo viền sáp, không ra ô vuông */
+  pointer-events: none; user-select: none;
+}
+.seal:hover { scale: 1.03; }
+.seal:active { scale: .97; }
+.seal:focus-visible, .cta:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; }
+
+/* ---------- CTA (104:794) ---------- */
+.cta {
+  position: absolute;
+  left: 50%; top: 596px;
+  translate: -50% 0;
+  padding: 8px 12px;
+  margin: 0; border: 0; background: none;
+  font: 500 16px/normal 'Inter', system-ui, sans-serif;
+  color: var(--ink);
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  animation: fade-in .8s ease .5s backwards;
+  transition: opacity .35s ease;
+}
+.cta span { display: inline-block; animation: breathe 2.4s ease-in-out 2s infinite; }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes breathe { 50% { opacity: .45; } }
+
+/* ---------- Trạng thái đã mở ----------
+   is-open  : dấu sáp/tên/CTA mờ đi, nắp lật lên, cảnh trượt xuống → thấy mặt trong của nắp
+   is-inside: bìa mờ dần, hoà sang trang nội dung (cảnh nền kem) */
+.stage.is-open .names,
+.stage.is-open .seal,
+.stage.is-open .cta, .stage.is-open .lang { opacity: 0; pointer-events: none; }
+.stage.is-open .flap  { transform: rotateX(180deg); }
+.stage.is-open .scene { translate: 0 400px; }
+
+/* Trang 2 (cả frame) đẩy từ dưới lên, chen giữa lớp sau (nền + nắp) và lớp trước (thân phong bì);
+   thân phong bì tiếp tục trượt xuống để nhường chỗ cho trang. */
+.stage.is-settled .scene { visibility: hidden; }
+.stage.is-inside .letter { translate: 0 0; pointer-events: auto; transition: translate 1.7s cubic-bezier(.45, .1, .25, 1); }
+.stage.is-inside .scene--front { translate: 0 1100px; transition: translate 1.2s cubic-bezier(.5, 0, .3, 1) .9s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .names__rot img, .seal, .cta, .cta span { animation: none; }
+  .scene, .flap, .names, .seal, .cta, .letter { transition-duration: .01s !important; transition-delay: 0s !important; }
+}
+
+/* ---------- Chọn ngôn ngữ (Figma 114:6254) ---------- */
+.lang {
+  position: absolute;
+  left: 50%; top: 772px;
+  translate: -50% 0;
+  display: flex; align-items: center; gap: 4px;
+  padding: 8px 12px;
+  margin: 0; border: 0; border-radius: 9999px;
+  background: #2a2e17; color: #fff;
+  font: 400 12px/normal 'Inter', system-ui, sans-serif;
+  white-space: nowrap; cursor: pointer;
+  animation: fade-in .8s ease .7s backwards;
+  transition: opacity .35s ease, background-color .25s ease, scale .2s ease;
+}
+.lang img { display: block; width: 16px; height: 16px; }
+.lang:hover { background: #3a4020; }
+.lang:active { scale: .96; }
+.lang:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+/* Đổi ngôn ngữ: chữ đổi có một nhịp hiện nhẹ */
+.lang-pop { animation: lang-pop .35s ease both; }
+@keyframes lang-pop { from { opacity: 0; translate: 0 4px; } to { opacity: 1; translate: 0 0; } }
+@media (prefers-reduced-motion: reduce) { .lang, .lang-pop { animation: none; } }
