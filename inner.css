@@ -22,8 +22,8 @@
 .page img { display: block; max-width: none; user-select: none; -webkit-user-drag: none; }
 
 /* ------------------------------------------------------------------ Hero */
-/* Một ảnh webp trong suốt (780×1038) thay cho toàn bộ hero ghép nhiều lớp trước đây */
-.hero { position: absolute; left: 0; top: 0; width: 390px; height: 519px; }
+/* Một ảnh webp trong suốt (780×1028) thay cho toàn bộ hero ghép nhiều lớp trước đây */
+.hero { position: absolute; left: 0; top: 0; width: 390px; height: 514px; }
 
 /* ------------------------------------------------------- Frame 78: tên + lịch lễ */
 .info { position: absolute; left: 16px; top: 501px; width: 358px; height: 333.3px; display: flex; flex-direction: column; align-items: center; gap: 36px; } /* Figma: 60 — rút lại vì thêm dòng gợi ý, để hai nút vẫn nằm trong màn hình đầu */
