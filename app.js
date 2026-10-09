@@ -49,7 +49,7 @@
       closeAria: 'Đóng thiệp',
       back: 'Quay lại', heroAltBride: 'Thiệp mời đám cưới nhà gái — Duy & Hảo',
       ev1: 'THÁNH LỄ HÔN PHỐI được cử hành vào lúc', ev2: 'LỄ VU QUY được cử hành vào lúc', ev3: 'TIỆC THÂN MẬT được cử hành vào lúc',
-      sat: 'Thứ Bảy,\n19.12.2026', place1: 'Giáo xứ Thánh Tâm - Lộc Tiến',
+      sat: 'Thứ Bảy,\n19.12.2026', place1: 'Giáo xứ Thánh Tâm - Lộc Tiến', placeHall: 'Hội trường giáo xứ Thánh Tâm -\u00a0Lộc\u00a0Tiến',
       place2: 'Tại Tư Gia - 1041 Trần Phú,\nPhường 3 Bảo Lộc, Lâm Đồng',
       arrive: '11:00 - Đón khách', start: '11:30 - Khai tiệc',
       heroAltGroom: 'Thiệp mời đám cưới nhà trai — Duy & Hảo',
@@ -71,7 +71,7 @@
       closeAria: 'Close the invitation',
       back: 'Back', heroAltBride: "The bride's family wedding invitation — Duy & Hảo",
       ev1: 'HOLY MATRIMONY MASS will be held at', ev2: 'THE VU QUY CEREMONY will be held at', ev3: 'THE INTIMATE RECEPTION will be held at',
-      sat: 'Saturday,\n19.12.2026', place1: 'Thánh Tâm Catholic Church - Lộc Tiến',
+      sat: 'Saturday,\n19.12.2026', place1: 'Thánh Tâm Catholic Church - Lộc Tiến', placeHall: 'Thánh Tâm Catholic Church Hall -\u00a0Lộc\u00a0Tiến',
       place2: 'At the family home - 1041 Trần Phú, Ward 3, Bảo Lộc, Lâm\u00a0Đồng', // \u00a0: không tách "Lâm Đồng" ra hai dòng
       arrive: '11:00 - Guests arrive', start: '11:30 - Reception starts',
       heroAltGroom: "The groom's family wedding invitation — Duy & Hảo",
