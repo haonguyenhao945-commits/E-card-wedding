@@ -128,7 +128,7 @@
      Bấm dấu sáp/CTA → nắp phong bì lật lên (is-open) → ngay khi nắp vừa lật xong
      đẩy cả trang trong từ dưới lên (is-inside), không dừng thêm. */
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const FLIP_DONE_MS = reduceMotion ? 0 : 1300; // nắp gần lật xong (delay .25s + lật 1.25s) thì trang 2 bắt đầu đẩy lên
+  const FLIP_DONE_MS = 0; // nắp bật lên, phong bì đẩy xuống và trang 2 trồi lên cùng lúc (độ trễ từng phần nằm trong CSS)
   let opened = false;
   function openInvitation() {
     if (opened) return;
@@ -142,10 +142,10 @@
       letter.tabIndex = 0;
       letter.scrollTop = 0;
       letter.focus({ preventScroll: true });
-      // Bắt đầu theo dõi cuộn khi trang 2 đã gần lên tới nơi, để hero hiện ra đúng lúc trang đến
-      setTimeout(startScrollReveal, reduceMotion ? 0 : 900);
+      // Bắt đầu theo dõi cuộn khi trang 2 vừa chui ra khỏi túi phong bì, để hero hiện ra trong lúc trang đang lên (không bị trống)
+      setTimeout(startScrollReveal, reduceMotion ? 0 : 850);
       // Khi trang trong đã lên hẳn và phong bì đã rời đi: ẩn các lớp phong bì phía sau để mép trang không lộ màu bên dưới
-      setTimeout(() => stage.classList.add('is-settled'), reduceMotion ? 0 : 2600);
+      setTimeout(() => stage.classList.add('is-settled'), reduceMotion ? 0 : 2300);
     }, FLIP_DONE_MS);
   }
   /* ---------- Hiện dần theo cuộn ----------
@@ -316,7 +316,7 @@
       letter.setAttribute('aria-hidden', 'true');
       letter.removeAttribute('tabindex');
       const toB = reduceMotion ? 0 : 1150;   // trang trong đã xuống gần hết → gập nắp
-      const toEnd = reduceMotion ? 0 : toB + 1700; // nắp đóng xong (1.1s) + bìa hiện lại (trễ 1.15s + mờ dần .35s) ≈ 2.9s tổng
+      const toEnd = reduceMotion ? 0 : toB + 1250; // nắp gập xong (.75s) + bìa hiện lại (trễ .75s + mờ dần .35s) ≈ 2.4s tổng
       setTimeout(() => stage.classList.remove('is-closing-a', 'is-open'), toB);
       setTimeout(resetAfterClose, toEnd);
     };
