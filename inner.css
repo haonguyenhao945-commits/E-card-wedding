@@ -22,7 +22,7 @@
 .page img { display: block; max-width: none; user-select: none; -webkit-user-drag: none; }
 
 /* ------------------------------------------------------------------ Hero */
-/* Một ảnh webp trong suốt (780×1028) thay cho toàn bộ hero ghép nhiều lớp trước đây */
+/* Hero: một ảnh webp 780×1028 (2x), đã áp sẵn hoà màu luminosity + dải mờ dần ở đáy như Figma 113:2012 */
 .hero { position: absolute; left: 0; top: 0; width: 390px; height: 514px; }
 
 /* ------------------------------------------------------- Frame 78: tên + lịch lễ */
@@ -73,11 +73,15 @@
 /* ba ô 374×266, bo 16px; mỗi ô là một lát của cùng một ảnh rừng 450×800 */
 .cd-photo { position: relative; height: 266px; border-radius: 16px; overflow: hidden; }
 .cd-photo img { position: absolute; left: 50%; width: 450px; height: 800px; object-fit: cover; transform: translateX(-50%); }
+/* Ảnh đã cắt sẵn đúng khung 374×266 (2x) và áp sẵn hiệu ứng screen trên nền đỏ đô như Figma (114:4621) */
+.cd-photo--fill img { left: 0; top: 0; width: 100%; height: 100%; transform: none; }
 .cd-row { position: absolute; left: 16px; top: 16px; width: 358px; padding: 16px; border-radius: 8px; display: flex; gap: 16px; align-items: flex-start; justify-content: center; text-align: center; line-height: normal; }
 .cd-cell { display: flex; flex-direction: column; align-items: center; }
 .cd-cell b { width: 100%; font-size: 24px; font-weight: 700; color: #f5f2db; font-variant-numeric: tabular-nums; }
 .cd-cell span { width: 100%; font-size: 12px; font-weight: 400; color: #a4a183; }
 .cd-colon { font-size: 24px; font-weight: 700; color: #a4a183; white-space: nowrap; }
+/* Trang chính (Figma 106:1880): nhãn và dấu hai chấm màu đỏ đậm trên ảnh sáng */
+.countdown--main .cd-cell span, .countdown--main .cd-colon { color: #430815; }
 
 .end-seal { position: absolute; left: 134px; top: 1634px; width: 122px; height: 122px; object-fit: cover; filter: drop-shadow(0 4px 8px rgba(37, 39, 25, .32)); }
 .end-date { position: absolute; left: 94px; top: 1772px; width: 202px; height: 50px; font-family: 'Great Vibes', cursive; font-size: 40px; line-height: normal; text-align: center; white-space: nowrap; }
@@ -200,7 +204,6 @@
 
 /* Đếm ngược + cuối trang (Frame 86 bắt đầu y=1263.3) */
 .countdown--sub { top: 1263.3px; }
-.countdown--sub .cd-photo img { width: 500px; height: 890px; }
 .end-seal--sub { top: 2024px; }
 .end-date--sub { top: 2156.3px; }
 .thanks--sub { top: 2222.3px; }
