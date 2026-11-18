@@ -136,7 +136,7 @@
 .pattern-footer { position: absolute; left: 0; bottom: 0; width: 390px; height: 100px; background: url("assets/Pattern%20footer.svg") center bottom / 390px 100px no-repeat; }
 
 /* ==========================================================================
-   Trang con "Nhà gái" — Figma 114:2015 (390×2411)
+   Trang con "Nhà gái" — Figma 114:2015 (390×2451)
    ========================================================================== */
 .sub {
   position: absolute; inset: 0; z-index: 9;
@@ -173,7 +173,7 @@
 .sub-back:active { scale: .94; }
 .sub-back:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
-.page--sub { height: 2396.3px; } /* = y của dải hoạ tiết (2296.3) + 100 */
+.page--sub { height: 2450.85px; } /* Figma 114:2015: Frame 86 y=1317.85 + 1133 */
 
 /* Tên + lịch lễ */
 .info--bride { height: auto; gap: 80px; }
@@ -181,32 +181,32 @@
 .person--bride { gap: 4.125px; }
 .person--bride .mask-up { flex: none; }
 
-.events { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 26.766px; }
-.event { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.event--party { gap: 24px; }
-.event--party > .rv-group { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.ev-title { width: 100%; font-size: 12px; font-weight: 600; line-height: normal; text-align: center; }
-.ev-row { width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 400; line-height: normal; }
-.ev-row--top { align-items: flex-start; }
-.ev-time { white-space: nowrap; text-align: center; }
-.ev-date { white-space: nowrap; text-align: left; }
-.ev-time--multi { text-align: left; display: flex; flex-direction: column; }
-.ev-time--multi > .split { display: block; }
-.ev-place { flex: none; text-align: left; }
-.ev-gap { flex: 1 0 0; align-self: stretch; display: flex; justify-content: center; min-width: 1px; }
+.events { width: 100%; display: flex; flex-direction: column; align-items: center; }
 .ev-sep { display: block; width: .5px; align-self: stretch; background: #430815; }
-.ev-sep--short { width: .5px; height: 13.383px; align-self: auto; }
 .rv-group .ev-sep { opacity: 0; transition: opacity .8s ease calc(var(--rd, 0s) + .3s); }
 .rv-group.is-in .ev-sep { opacity: 1; }
+
+/* Lịch lễ Nhà gái (Figma 114:2034) và Nhà trai (238:213): hai khối căn giữa, cách nhau bằng vạch chấm */
+.events--centered { gap: 20px; }
+.evb { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 14px; line-height: 20px; text-align: center; }
+.evb > .evb-title { margin-bottom: 2.068px; } /* tiêu đề cách 6.068px */
+.evb--party > .evb-title { line-height: normal; margin-bottom: 0; }
+.evb-title { display: flex; flex-wrap: wrap; justify-content: center; column-gap: .28em; }
+.evb-strong { font-weight: 600; }
+.evb-upper { text-transform: uppercase; }
+.evb-when { display: flex; align-items: stretch; }
+.evb-when .ev-sep { align-self: stretch; }
+/* Vạch chấm (Figma Line 259: nét 2px, khoảng 2px). Vẽ 1px để không bị mất khi thu nhỏ; độ đậm hạ xuống cho giống nét 0.5px */
+.evb-divider { display: block; flex: none; width: 258px; height: 1px; margin: -.5px 0; background: repeating-linear-gradient(90deg, rgba(67, 8, 21, .55) 0 2px, transparent 2px 4px); }
 
 .qr { display: flex; padding: 3.81px; background: #fff; border-radius: 16px; }
 .qr img { width: 152.381px; height: 152.381px; border-radius: 22.857px; object-fit: cover; }
 
-/* Đếm ngược + cuối trang (Frame 86 bắt đầu y=1263.3) */
-.countdown--sub { top: 1263.3px; }
-.end-seal--sub { top: 2024px; }
-.end-date--sub { top: 2156.3px; }
-.thanks--sub { top: 2222.3px; }
+/* Đếm ngược + cuối trang (Frame 86 bắt đầu y=1317.85) */
+.countdown--sub { top: 1317.85px; }
+.end-seal--sub { top: 2078.54px; }
+.end-date--sub { top: 2210.85px; }
+.thanks--sub { top: 2276.85px; }
 
 @media (prefers-reduced-motion: reduce) {
   .invite__btns.is-in .pill, .invite__btns.is-in .pill .pill__arrow { animation: none; }
@@ -214,12 +214,12 @@
   .rv-group .ev-sep { opacity: 1; transition: none; }
 }
 
-/* Trang con "Nhà trai" — Figma 114:3723 (390×2338). Khung 87 bắt đầu y=1190.1 */
-.page--groom { height: 2323.1px; } /* = y của dải hoạ tiết (2223.1) + 100 */
-.countdown--groom { top: 1190.1px; }
-.end-seal--groom { top: 1951px; }
-.end-date--groom { top: 2083.1px; }
-.thanks--groom { top: 2149.1px; }
+/* Trang con "Nhà trai" — Figma 114:3723 (390×2442). Khung 87 bắt đầu y=1309.37 */
+.page--groom { height: 2442.37px; } /* Khung 87 y=1309.37 + 1133 */
+.countdown--groom { top: 1309.37px; }
+.end-seal--groom { top: 2070.27px; }
+.end-date--groom { top: 2202.37px; }
+.thanks--groom { top: 2268.37px; }
 
 /* Dấu sáp cuối trang bấm được: đóng thiệp, quay về phong bì chưa mở */
 .end-seal[data-close-envelope] { cursor: pointer; }

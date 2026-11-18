@@ -48,14 +48,12 @@
       thanks: 'Thank you!',
       closeAria: 'Đóng thiệp',
       back: 'Quay lại', heroAltBride: 'Thiệp mời đám cưới nhà gái — Duy & Hảo',
-      ev1: 'THÁNH LỄ HÔN PHỐI được cử hành vào lúc', ev2: 'LỄ VU QUY được cử hành vào lúc', ev3: 'TIỆC THÂN MẬT được cử hành vào lúc',
-      sat: 'Thứ Bảy,\n19.12.2026', place1: 'Giáo xứ Thánh Tâm - Lộc Tiến', placeHall: 'Hội trường giáo xứ Thánh Tâm -\u00a0Lộc\u00a0Tiến',
-      place2: 'Tại Tư Gia - 1041 Trần Phú,\nPhường 3 Bảo Lộc, Lâm Đồng',
-      arrive: '11:00 - Đón khách', start: '11:30 - Khai tiệc',
+      massT: 'THÁNH LỄ HÔN PHỐI', partyT: 'TIỆC THÂN MẬT', heldAt: 'được cử hành vào lúc', partyAt: 'bắt đầu lúc', satOne: 'Thứ Bảy, 19.12.2026',
+      atWord: 'tại', massPlace: 'Thánh Đường Giáo Xứ Thánh Tâm', partyPlace: 'Khuôn viên nhà thờ giáo xứ Thánh Tâm',
+      addrBride: '44 Nguyễn Tri Phương, phường 3 Bảo Lộc, Lâm\u00a0Đồng',
       heroAltGroom: 'Thiệp mời đám cưới nhà trai — Duy & Hảo',
-      evT1: 'LỄ TÂN HÔN được cử hành vào lúc', sun: 'Chủ Nhật,\n20.12.2026',
-      placeT1: 'Tại Tư Gia - Số 22, Đường 14A, Ấp Củ Chi, Xã Tân An Hội, TP.HCM',
-      placeT2: 'Hoa Viên Dốc Phố\n22 Đường số 35, Xã Tân An Hội, TP.HCM',
+      tanHonT: 'LỄ TÂN HÔN', sunOne: 'Chủ Nhật, 20.12.2026', homePlace: 'Tư gia',
+      addrHome: 'Số 22, Đường 14A, Ấp Củ Chi, Xã Tân An Hội, TP.HCM', addrParty: '22 Đường số 35, Xã Tân An Hội, TP.HCM',
     },
     en: {
       title: 'Duy & Hảo — Wedding Invitation', h1: 'Duy & Hảo — Wedding Invitation',
@@ -70,14 +68,12 @@
       thanks: 'Thank you!',
       closeAria: 'Close the invitation',
       back: 'Back', heroAltBride: "The bride's family wedding invitation — Duy & Hảo",
-      ev1: 'HOLY MATRIMONY MASS will be held at', ev2: 'THE VU QUY CEREMONY will be held at', ev3: 'THE INTIMATE RECEPTION will be held at',
-      sat: 'Saturday,\n19.12.2026', place1: 'Thánh Tâm Catholic Church - Lộc Tiến', placeHall: 'Thánh Tâm Catholic Church Hall -\u00a0Lộc\u00a0Tiến',
-      place2: 'At the family home - 1041 Trần Phú, Ward 3, Bảo Lộc, Lâm\u00a0Đồng', // \u00a0: không tách "Lâm Đồng" ra hai dòng
-      arrive: '11:00 - Guests arrive', start: '11:30 - Reception starts',
+      massT: 'HOLY MATRIMONY MASS', partyT: 'THE INTIMATE RECEPTION', heldAt: 'will be held at', partyAt: 'begins at', satOne: 'Saturday, 19.12.2026',
+      atWord: 'at', massPlace: 'Thánh Tâm Parish Church', partyPlace: 'Thánh Tâm Parish Church grounds',
+      addrBride: '44 Nguyễn Tri Phương, Ward 3, Bảo Lộc, Lâm\u00a0Đồng',
       heroAltGroom: "The groom's family wedding invitation — Duy & Hảo",
-      evT1: 'THE WEDDING CEREMONY will be held at', sun: 'Sunday,\n20.12.2026',
-      placeT1: 'At the family home - 22 Street 14A, Củ\u00a0Chi Hamlet, Tân\u00a0An\u00a0Hội Commune, HCMC',
-      placeT2: 'Hoa Viên Dốc Phố\n22 Street No. 35, Tân\u00a0An\u00a0Hội Commune, HCMC', // tên riêng giữ nguyên tiếng Việt
+      tanHonT: 'THE WEDDING CEREMONY', sunOne: 'Sunday, 20.12.2026', homePlace: 'Family home',
+      addrHome: '22 Street 14A, Củ\u00a0Chi Hamlet, Tân\u00a0An\u00a0Hội, HCMC', addrParty: '22 Street No. 35, Tân\u00a0An\u00a0Hội Commune, HCMC', // tên riêng giữ nguyên tiếng Việt
     },
   };
   let lang = 'vi';
@@ -108,8 +104,8 @@
   applyLang(lang, false);
   document.getElementById('lang').addEventListener('click', () => applyLang(lang === 'vi' ? 'en' : 'vi', true));
 
-  /* ---------- Đếm ngược tới Thánh lễ Hôn phối: 04:30 Thứ Bảy 19.12.2026 (giờ VN) ---------- */
-  const TARGET = new Date('2026-12-19T04:30:00+07:00').getTime();
+  /* ---------- Đếm ngược tới Thánh lễ Hôn phối: 05:00 Thứ Bảy 19.12.2026 (giờ VN) ---------- */
+  const TARGET = new Date('2026-12-19T05:00:00+07:00').getTime();
   const cd = { d: document.querySelectorAll('[data-cd="d"]'), h: document.querySelectorAll('[data-cd="h"]'), m: document.querySelectorAll('[data-cd="m"]'), s: document.querySelectorAll('[data-cd="s"]') };
   const pad = (n) => String(n).padStart(2, '0');
   const put = (nodes, v) => nodes.forEach((n) => { n.textContent = v; });
