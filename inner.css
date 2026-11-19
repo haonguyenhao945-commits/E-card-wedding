@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Trang trong — Figma 104:810 (Frame 2 · 390×2028)
+   Trang trong — Figma 104:810 (Frame 2 · 390×2365)
    Tọa độ lấy từ Figma, nhóm theo từng khối. Nội dung cuộn dọc trong khung 390px.
    ========================================================================== */
 
@@ -17,7 +17,7 @@
 .letter::-webkit-scrollbar { display: none; }
 .letter:focus-visible { outline: none; }
 
-.page { position: relative; width: 390px; height: 2028px; overflow: hidden; color: #430815; font-family: 'Inter', system-ui, sans-serif; }
+.page { position: relative; width: 390px; height: 2384.26px; overflow: hidden; color: #430815; font-family: 'Inter', system-ui, sans-serif; }
 .page p { margin: 0; }
 .page img { display: block; max-width: none; user-select: none; -webkit-user-drag: none; }
 
@@ -26,7 +26,7 @@
 .hero { position: absolute; left: 0; top: 0; width: 390px; height: 514px; }
 
 /* ------------------------------------------------------- Frame 78: tên + lịch lễ */
-.info { position: absolute; left: 16px; top: 501px; width: 358px; height: 333.3px; display: flex; flex-direction: column; align-items: center; gap: 36px; } /* Figma: 60 — rút lại vì thêm dòng gợi ý, để hai nút vẫn nằm trong màn hình đầu */
+.info { position: absolute; left: 16px; top: 501px; width: 358px; height: 333.3px; display: flex; flex-direction: column; align-items: center; gap: 36px; }
 .couple { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 10.309px; }
 .person { display: flex; flex-direction: column; align-items: center; gap: 5.154px; }
 .role { font-size: 14px; font-weight: 500; line-height: normal; text-align: center; }
@@ -35,6 +35,17 @@
 .pig--flip { transform: scaleX(-1); }
 .amp { font-family: 'Great Vibes', cursive; font-size: 37.798px; line-height: normal; white-space: nowrap; }
 
+/* Trang chính (Figma 106:1858): mỗi bên có khối gia đình (nhãn, tên ông bà, địa chỉ) — nhà trai trên tên chú rể, nhà gái dưới tên cô dâu */
+.hero-mono { position: absolute; left: 94px; top: 486px; width: 202px; height: 116px; }
+.info--main { top: 654.26px; height: auto; gap: 60px; } /* Figma: khối tên bắt đầu y=654.26 (dưới chữ lồng DH) */
+.couple--main { gap: 24px; }
+.couple--main .person { gap: 12px; }
+.couple--main .role { font-weight: 400; } /* cùng độ đậm với nhãn "Nhà trai" / "Nhà gái" */
+.side { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.fam { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 2.841px; font-size: 14px; line-height: 20px; text-align: center; }
+.fam__name { font-weight: 600; text-transform: uppercase; }
+.info--main .invite { gap: 24px; }
+
 /* Frame 83: Trân trọng báo tin + hai nút */
 .invite { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 14px; } /* Figma: 24 */
 .invite__title { width: 291.753px; font-size: 14px; font-weight: 500; line-height: normal; text-align: center; }
@@ -42,11 +53,11 @@
 .pill {
   flex: 1 0 0; min-width: 1px; padding: 8px 24px;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(171, 13, 45, .4); border: 1px solid #ece7bc; border-radius: 9999px;
+  background: rgba(241, 217, 222, .4); border: 1px solid #cca4ac; border-radius: 9999px;
   color: #430815; font: 600 14px/normal 'Inter', system-ui, sans-serif; text-transform: uppercase; white-space: nowrap; text-align: center;
   cursor: pointer; transition: background-color .25s ease, scale .2s ease;
 }
-.pill:hover { background: rgba(171, 13, 45, .52); }
+.pill:hover { background: rgba(241, 217, 222, .75); }
 /* Gợi ý bấm được: mũi tên + vầng sáng nhịp nhẹ sau khi nút hiện ra (dừng khi hover/bấm) */
 .pill { gap: 8px; }
 .pill__arrow { flex: none; transition: translate .25s ease; }
@@ -57,9 +68,9 @@
 .invite__btns.is-in.is-seen .pill, .invite__btns.is-in.is-seen .pill .pill__arrow { animation: none; }
 .invite__btns.is-in .pill .pill__arrow { animation: arrow-nudge 1.9s ease-in-out 1.6s 3; }
 @keyframes pill-pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(171, 13, 45, .45); }
-  70%  { box-shadow: 0 0 0 12px rgba(171, 13, 45, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(171, 13, 45, 0); }
+  0%   { box-shadow: 0 0 0 0 rgba(204, 164, 172, .6); }
+  70%  { box-shadow: 0 0 0 12px rgba(204, 164, 172, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(204, 164, 172, 0); }
 }
 @keyframes arrow-nudge { 0%, 60%, 100% { translate: 0 0; } 30% { translate: 4px 0; } }
 .invite__head { display: flex; flex-direction: column; align-items: center; gap: 6px; }
@@ -68,7 +79,8 @@
 .pill:focus-visible { outline: 2px solid #430815; outline-offset: 3px; }
 
 /* ------------------------------------------------------------- Count down */
-.countdown { position: absolute; left: 0; top: 895px; width: 390px; height: 822px; padding: 8px; background: #530818; }
+/* Trang chính: khung đếm ngược = đáy khối tên/lời mời (654.26 + 557, gồm cả dòng gợi ý) + 40 như Figma; dấu sáp +761, ngày +893, Thank you +959, trang cao +1133 */
+.countdown { position: absolute; left: 0; top: 1251.26px; width: 390px; height: 822px; padding: 8px; background: #530818; }
 .cd-photos { display: flex; flex-direction: column; gap: 4px; width: 374px; }
 /* ba ô 374×266, bo 16px; mỗi ô là một lát của cùng một ảnh rừng 450×800 */
 .cd-photo { position: relative; height: 266px; border-radius: 16px; overflow: hidden; }
@@ -83,8 +95,8 @@
 /* Trang chính (Figma 106:1880): nhãn và dấu hai chấm màu đỏ đậm trên ảnh sáng */
 .countdown--main .cd-cell span, .countdown--main .cd-colon { color: #430815; }
 
-.end-seal { position: absolute; left: 134px; top: 1634px; width: 122px; height: 122px; object-fit: cover; filter: drop-shadow(0 4px 8px rgba(37, 39, 25, .32)); }
-.end-date { position: absolute; left: 94px; top: 1772px; width: 202px; height: 50px; font-family: 'Great Vibes', cursive; font-size: 40px; line-height: normal; text-align: center; white-space: nowrap; }
+.end-seal { position: absolute; left: 134px; top: 2012.26px; width: 122px; height: 122px; object-fit: cover; filter: drop-shadow(0 4px 8px rgba(37, 39, 25, .32)); }
+.end-date { position: absolute; left: 94px; top: 2144.26px; width: 202px; height: 50px; font-family: 'Great Vibes', cursive; font-size: 40px; line-height: normal; text-align: center; white-space: nowrap; }
 
 /* ==========================================================================
    Hiện dần theo cuộn: IntersectionObserver (app.js) thêm .is-in khi khối cuộn tới
@@ -131,7 +143,7 @@
 }
 
 /* Lời cảm ơn + dải hoạ tiết cuối trang (Frame 85) */
-.thanks { position: absolute; left: 49px; top: 1838px; width: 291.8px; height: 30px; font-size: 12px; font-weight: 500; line-height: normal; text-align: center; }
+.thanks { position: absolute; left: 49px; top: 2210.26px; width: 291.8px; height: 30px; font-size: 12px; font-weight: 500; line-height: normal; text-align: center; }
 /* Dải hoạ tiết nằm sát đáy trang: trang kết thúc ngay ở mép dưới của nó, không còn khoảng trắng */
 .pattern-footer { position: absolute; left: 0; bottom: 0; width: 390px; height: 100px; background: url("assets/Pattern%20footer.svg") center bottom / 390px 100px no-repeat; }
 
